@@ -7,7 +7,9 @@ public class Beer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int breweryID;
+	@ManyToOne
+	@JoinColumn(name="breweryID")
+	private Brewery brewery;
 	private String name;
 	private String style;
 	private double ABV;
@@ -18,10 +20,10 @@ public class Beer {
 		super();
 	}
 
-	public Beer(int id, int breweryID, String name, String style, double aBV, double iBU, double rating) {
+	public Beer(int id, Brewery brewery, String name, String style, double aBV, double iBU, double rating) {
 		super();
 		this.id = id;
-		this.breweryID = breweryID;
+		this.brewery = brewery;
 		this.name = name;
 		this.style = style;
 		ABV = aBV;
@@ -37,12 +39,12 @@ public class Beer {
 		this.id = id;
 	}
 
-	public int getBreweryID() {
-		return breweryID;
+	public Brewery getBrewery() {
+		return brewery;
 	}
 
-	public void setBreweryID(int breweryID) {
-		this.breweryID = breweryID;
+	public void setBrewery(Brewery brewery) {
+		this.brewery = brewery;
 	}
 
 	public String getName() {
@@ -87,7 +89,7 @@ public class Beer {
 
 	@Override
 	public String toString() {
-		return "Beer [id=" + id + ", breweryID=" + breweryID + ", name=" + name + ", style=" + style + ", ABV=" + ABV
+		return "Beer [id=" + id + ", brewery=" + brewery + ", name=" + name + ", style=" + style + ", ABV=" + ABV
 				+ ", IBU=" + IBU + ", rating=" + rating + "]";
 	}
 

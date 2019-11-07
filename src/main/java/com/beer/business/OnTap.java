@@ -7,18 +7,22 @@ public class OnTap {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int venueID;
-	private int beerID;
+	@ManyToOne
+	@JoinColumn(name="VenueId")
+	private Venue venue;
+	@ManyToOne
+	@JoinColumn(name="beerId")
+	private Beer beer;
 
 	public OnTap() {
 		super();
 	}
 
-	public OnTap(int id, int venueID, int beerID) {
+	public OnTap(int id, Venue venue, Beer beer) {
 		super();
 		this.id = id;
-		this.venueID = venueID;
-		this.beerID = beerID;
+		this.venue = venue;
+		this.beer = beer;
 	}
 
 	public int getId() {
@@ -29,25 +33,25 @@ public class OnTap {
 		this.id = id;
 	}
 
-	public int getVenueID() {
-		return venueID;
+	public Venue getVenue() {
+		return venue;
 	}
 
-	public void setVenueID(int venueID) {
-		this.venueID = venueID;
+	public void setVenue(Venue venue) {
+		this.venue = venue;
 	}
 
-	public int getBeerID() {
-		return beerID;
+	public Beer getBeer() {
+		return beer;
 	}
 
-	public void setBeerID(int beerID) {
-		this.beerID = beerID;
+	public void setBeer(Beer beer) {
+		this.beer = beer;
 	}
 
 	@Override
 	public String toString() {
-		return "OnTap [id=" + id + ", venueID=" + venueID + ", beerID=" + beerID + "]";
+		return "OnTap [id=" + id + ", venue=" + venue + ", beer=" + beer + "]";
 	}
 
 }
